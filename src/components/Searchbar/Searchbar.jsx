@@ -1,17 +1,25 @@
-import React from "react"
+import { BtnSubmit, SearchForm, SearchFormInput,Header } from './Searchbar.style';
 
-<header class="searchbar">
-  <form class="form">
-    <button type="submit" class="button">
-      <span class="button-label">Search</span>
-    </button>
-
-    <input
-      class="input"
-      type="text"
-      autocomplete="off"
-      autofocus
-      placeholder="Search images and photos"
-    />
-  </form>
-</header>
+export const SearchBar = ({ onSubmit }) => {
+  return (
+    <Header>
+      <SearchForm
+        onSubmit={evt => {
+          evt.preventDefault();
+          const { searchQuery } = evt.target.elements;
+          onSubmit(searchQuery.value);
+          evt.target.reset();
+        }}
+      >
+        <SearchFormInput
+          name="searchQuery"
+          type="text"
+          placeholder="Search images and photos"
+        />
+        <BtnSubmit type="submit">
+         Search
+        </BtnSubmit>
+      </SearchForm>
+    </Header>
+  );
+};
